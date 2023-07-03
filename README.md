@@ -4,3 +4,5 @@
 ```bash
 gcc gray.c -o gray -lm
 ```
+
+This wil create the ```gray``` executable in the root folder.
