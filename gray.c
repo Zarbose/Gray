@@ -3,10 +3,10 @@
 #include <stdlib.h>
 
 #define col 4
-#define raw pow(2,col) 
+#define row pow(2,col) 
 
 void print_table(int **gray_table){
-    for (int i = 0; i < raw; i++){
+    for (int i = 0; i < row; i++){
         for (int j = 0; j < col; j++){
             printf("%d",gray_table[i][j]);
         }
@@ -23,7 +23,7 @@ void decimal_to_binary(int num, int **gray_table, int pos) {
 }
 
 void generate_gray(int **gray_table){
-    for (int i = 0; i < raw; i++){
+    for (int i = 0; i < row; i++){
         int N = i;
         int N_2 = N << 1;
         int gray = (N ^ N_2) >> 1;
@@ -31,16 +31,20 @@ void generate_gray(int **gray_table){
     }
 }
 
+int * get_row(int **gray_table, int id){
+    return gray_table[id];
+}
+
 int main() {
-    int** gray_table = malloc(sizeof(int*) * raw);
-    for (int i = 0; i < raw; i++) {
+    int** gray_table = malloc(sizeof(int*) * row);
+    for (int i = 0; i < row; i++) {
         gray_table[i] = malloc(sizeof(int) * col);
     }
 
     generate_gray(gray_table);
     print_table(gray_table);
 
-    for (int i = 0; i < raw; i++) {
+    for (int i = 0; i < row; i++) {
         free(gray_table[i]);
     }
     free(gray_table);
